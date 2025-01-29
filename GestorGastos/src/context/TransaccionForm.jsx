@@ -27,12 +27,12 @@ export function TransaccionForm() {
                     onChange={(e) => setDescripcion(e.target.value)}
                 />
                 <input
-                    type="number"
-                    step={1}
-                    placeholder="Ingresa el monto"
-                    value={amount} 
-                    onChange={(e) => setAmount(Number(e.target.value))} // Convertir a número
-                />
+          type="number"
+          onChange={(e) => setAmount(e.target.value)}
+          step="0.01"
+          placeholder="0.00"
+          value={amount}
+        />
                 <button type="submit">Agregar transacción</button>
             </form>
         </div>
