@@ -9,23 +9,12 @@ export function TransaccionForm() {
     const onSubmit = (e) => {
         e.preventDefault();
         
-        
-        if (!descripcion.trim()) {
-            alert("Por favor, ingresa una descripción válida.");
-            return;
-        }
-
-        if (amount === 0 || isNaN(amount)) {
-            alert("Por favor, ingresa un monto válido.");
-            return;
-        }
-
-        console.log("Descripción:", descripcion);
-        console.log("Monto:", amount);
-
-        // Limpia los campos después de enviar
-        setDescripcion("");
-        setAmount(0);
+        addTransaction({
+            id:1,
+            descripcion,
+            amount
+        })
+       
     };
 
     return (
