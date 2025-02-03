@@ -2,19 +2,25 @@ import { useState } from "react";
 import { useGlobalState } from "./GlobalState";
 
 export function TransaccionForm() {
-    const {addTransaction} = useGlobalState();
+    const { addTransaction } = useGlobalState();
     const [descripcion, setDescripcion] = useState(""); 
     const [amount, setAmount] = useState(0); 
 
     const onSubmit = (e) => {
         e.preventDefault();
         
-        addTransaction({
-            id:window.crypto.randomUUID(),
+        const newTransaction = {
+            id: window.crypto.randomUUID(),
             descripcion,
-            amount
-        })
-       
+            amount: Number(amount), 
+        };
+
+        addTransaction(newTransaction);
+        console.log("Transacción agregada:", newTransaction);
+
+        
+        setDescripcion("");
+        setAmount(0);
     };
 
     return (
@@ -22,17 +28,17 @@ export function TransaccionForm() {
             <form onSubmit={onSubmit}>
                 <input
                     type="text"
-                    placeholder="Ingresa Descripcion"
+                    placeholder="Ingresa Descripción"
                     value={descripcion} 
                     onChange={(e) => setDescripcion(e.target.value)}
                 />
                 <input
-          type="number"
-          onChange={(e) => setAmount(e.target.value)}
-          step="0.01"
-          placeholder="0.00"
-          value={amount}
-        />
+                    type="number"
+                    step="0.01"
+                    placeholder="Ingrese monto"
+                    value={amount}
+                    onChange={(e) => setAmount(Number(e.target.value))} // Convertir a número
+                />
                 <button type="submit">Agregar transacción</button>
             </form>
         </div>
