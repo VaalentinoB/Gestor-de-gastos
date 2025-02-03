@@ -10,7 +10,7 @@ export function TransaccionForm() {
         e.preventDefault();
         
         addTransaction({
-            id:1,
+            id:window.crypto.randomUUID(),
             descripcion,
             amount
         })
